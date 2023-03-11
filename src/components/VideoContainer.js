@@ -20,7 +20,7 @@ const VideoContainer = () => {
       // <div className='flex flex-wrap gap-7 px-5 py-2 border border-red-900'>
       //   {data.items.map((item) => <VideoCard imgUrl={item?.snippet?.thumbnails?.medium?.url} title={item?.snippet?.title} channelTitle={item?.snippet?.channelTitle} views={item?.statistics?.viewCount} />)}
       // </div>
-      <div className='grid grid-cols-4 mt-2 place-items-center'>
+      <div className='grid grid-cols-4 mt-2 place-items-center gap-2'>
         {data.items.map((item) => <VideoCard imgUrl={item?.snippet?.thumbnails?.medium?.url} title={item?.snippet?.title} channelTitle={item?.snippet?.channelTitle} views={item?.statistics?.viewCount} />)}
       </div>
 

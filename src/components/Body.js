@@ -1,12 +1,11 @@
-import ButtonList from './ButtonList'
+import { Outlet } from 'react-router-dom';
 import SideBar from './SideBar'
 import VideoContainer from './VideoContainer'
 const Body = () => {
     return <div className='flex'>
             <SideBar />
         <div>
-            <ButtonList />
-            <VideoContainer />
+            <Outlet />
         </div>
     </div>
 }
