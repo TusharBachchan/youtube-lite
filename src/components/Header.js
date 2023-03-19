@@ -5,6 +5,7 @@ import searchIcon from '../images/search-icon.png'
 import {useDispatch} from 'react-redux'
 import { toggleSideBar } from '../utils/reducers';
 import ButtonList from './ButtonList'
+import {Link} from "react-router-dom"
 
 const Header = () => {
     const dispatch = useDispatch();
@@ -12,11 +13,11 @@ const Header = () => {
         dispatch(toggleSideBar())
     }
 
-    return (<div className=''>
-        <div className="flex p-4 justify-between">
+    return (<div className='fixed bg-white w-screen'>
+        <div className="flex p-4 justify-between ">
             <div className="flex">
                 <button onClick={handleSidebarToggle}><img className="h-7 mr-7 cursor-pointer" src={hamburgerButton} alt="hamburger-button" /></button>
-                <button><img className="h-7 cursor-pointer" src={youtubeLogo} alt="hamburger-button" /></button>
+                <Link to="/"><img className="h-7 cursor-pointer" src={youtubeLogo} alt="hamburger-button" /></Link>
             </div>
             <div className='w-3/5 flex'>
                 <input type="text" placeholder='search' className='w-3/4 px-2 border-solid border-2 border-l-gray-300 rounded-l-3xl' />

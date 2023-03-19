@@ -2,6 +2,7 @@ import React from 'react'
 import VideoCard from './VideoCard'
 import { useEffect, useState } from 'react'
 import { API_KEY } from '../utils/constants'
+import Shimmer from "./Shimmer"
 const VideoContainer = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -14,14 +15,14 @@ const VideoContainer = () => {
     const json = await data.json()
     setData(json)
   }
-  if (data.length === 0) return null;
+  if (data.length === 0) return <Shimmer />;
   return (
     
       // <div className='flex flex-wrap gap-7 px-5 py-2 border border-red-900'>
       //   {data.items.map((item) => <VideoCard imgUrl={item?.snippet?.thumbnails?.medium?.url} title={item?.snippet?.title} channelTitle={item?.snippet?.channelTitle} views={item?.statistics?.viewCount} />)}
       // </div>
-      <div className='grid grid-cols-4 mt-2 place-items-center gap-2'>
-        {data.items.map((item) => <VideoCard imgUrl={item?.snippet?.thumbnails?.medium?.url} title={item?.snippet?.title} channelTitle={item?.snippet?.channelTitle} views={item?.statistics?.viewCount} />)}
+      <div className='grid grid-cols-4 gap-4 mt-32'>
+        {data.items.map((item) => <VideoCard imgUrl={item?.snippet?.thumbnails?.medium?.url} title={item?.snippet?.title} channelTitle={item?.snippet?.channelTitle} views={item?.statistics?.viewCount} id = {item?.id}/>)}
       </div>
 
   )

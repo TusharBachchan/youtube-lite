@@ -7,6 +7,7 @@ import store from './utils/store'
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import VideoContainer from './components/VideoContainer'
 import Video from "./components/Video"
+import Shimmer from "./components/Shimmer"
 const Root = () => {
   return <Provider store = {store}>
   <App />
@@ -26,6 +27,10 @@ const appRouter = createBrowserRouter([
         element: <Video />
       }
     ]
+  }, 
+  {
+    path: "/shimmer",
+    element: <Shimmer />
   }
   
 ])

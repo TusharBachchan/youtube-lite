@@ -1,5 +1,7 @@
 import {useState} from 'react'
-const VideoCard = ({imgUrl, title, channelTitle, views}) => {
+import { Link } from 'react-router-dom'
+import Video from './Video'
+const VideoCard = ({imgUrl, title, channelTitle, views, id}) => {
     // const [viewCount, setViewCount] = useState('')
     // const convertViewsFormat = (viewCount) => {
     //     let str = String(viewCount)
@@ -28,9 +30,9 @@ const VideoCard = ({imgUrl, title, channelTitle, views}) => {
     // }
 
     return <div className="rounded-2xl">
-        <img src={imgUrl} alt="" className='rounded-2xl cursor-pointer' />
+        <Link to={`/watch?v=${id}`}><img src={imgUrl} alt="" className='rounded-2xl cursor-pointer' /></Link>
         <div className='p-2'>
-            <h2 className='text-lg font-semibold cursor-pointer'>{title.substring(0, 20) + "..."}</h2>
+            <Link to={`/watch?v=${id}`}><h2 className='text-lg font-semibold cursor-pointer'>{title.substring(0, 20) + "..."}</h2></Link>
             <h3 className='text-sm cursor-pointer'>{channelTitle}</h3>
             {/* {convertViewsFormat(views)} */}
             {/* console.log(viewCount) */}
