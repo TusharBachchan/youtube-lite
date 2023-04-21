@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { API_KEY } from '../utils/constants'
 import { TbShare3 } from 'react-icons/tb';
+import { SlOptions } from 'react-icons/sl';
+import ProfileLogo from "./ProfileLogo"
+import Comment from "./Comment"
+
 const Video = () => {
     // GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=[YOUR_API_KEY]
     const [searchParams] = useSearchParams();
@@ -28,15 +32,15 @@ const Video = () => {
     }
     // setting up channel api function
 
-    // const getchannelDetails = async() => {
-    //     const data = await fetch(`https://youtube.googleapis.com/youtube/v3/channelSections?part=snippet%2CcontentDetails&channelId=${videoData?.snippet?.channelId}&key=${API_KEY}
-    // `)
+    const getchannelDetails = async () => {
+        const data = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${videoData?.snippet?.channelId}&key=${API_KEY}
+`)
 
-    //     // const json = await data.json();
-    //     // setCommentData(json.items)
+        // const json = await data.json();
+        // setCommentData(json.items)
 
-    //     // setVideoData(json.items[0])
-    // }
+        // setVideoData(json.items[0])
+    }
 
     return (
         <div className="video-page-container mt-32 grid grid-cols-3  border-4 border-red-800 w-screen">
@@ -51,30 +55,64 @@ const Video = () => {
                 </div>
                 {/* Channel Details 
                     -contains Channel detais
-                    -subscribe, like, dislike, share and options button 
+                    -subscribe, like, dislike, share and options button starts here
                 */}
 
-                <div className="channel-details my-2 w-4/5 mx-auto flex border">
-                    <div className="channel-details-subscribe">Lorem ipsum dolor.</div>
-                    <div className="channel-details-buttons p-2 border flex gap-2">
-                        <div className='like-dislike-btn bg-gray-200 rounded-lg'>
+                <div className="channel-details my-2 w-4/5 mx-auto flex justify-between ">
+                    <div className="channel-details-subscribe flex">
+                        <div className="p-2"><ProfileLogo /></div>
+                        <div>
+                            <h1 className=" font-bold">{videoData?.snippet?.channelTitle}</h1>
+                            <h3 className=" text-sm text-gray-500">Subscriber Count</h3>
+                        </div>
+                    </div>
+                    <div className="channel-details-buttons flex gap-6">
+                        <div className='like-dislike-btn bg-gray-200 rounded-2xl px-3 '>
                             <button className="p-2 bg-gray-200 rounded-lg">👍</button>
                             <span className="seperator bg-gray-200 text-gray-400 py-2">|</span>
                             <button className="p-2 bg-gray-200 rounded-lg">👎</button>
                         </div>
-                        <div className="buttons flex">
-                            <div className="share flex bg-gray-200 rounded-3xl">
-                                <div className="py-3 pl-3"><TbShare3 /></div>
+
+                        {/* ==================================Share Button started===========================*/}
+                        <div className="share-btn buttons flex">
+                            <div className="flex bg-gray-200 rounded-3xl">
+                                <div className="py-2 pl-3 text-2xl"><TbShare3 /></div>
                                 <button className="p-2 border bg-gray-200 rounded-3xl pr-3">Share</button>
                             </div>
-                            <button className="p-2 border mx-2 bg-gray-200 rounded-lg">...</button>
+                            {/* ==================================Share Button ended===========================*/}
+                            <button className="p-3 border mx-2 bg-gray-200 rounded-full text-gray-900 "><SlOptions /></button>
                         </div>
                     </div>
                 </div>
+
+
+                {/* Channel Details 
+                    -contains Channel detais
+                    -subscribe, like, dislike, share and options button ends here
+                */}
+                {/* Description section starting here */}
+                <div className='description bg-gray-200 my-2 w-4/5 mx-auto p-3 rounded-xl'>
+                    {videoData?.snippet?.description}
+                </div>
+                {/* Description section ending here */}
+                {/* Comments section starting here */}
+                <div className='comments-container w-4/5 mx-auto p-3 rounded-xl'>
+                    <h1 className='font-semibold text-lg'>Comments</h1>
+                    <div className="comment-container ">
+                        <Comment />
+                        <Comment />
+                        <Comment />
+                        <Comment />
+                        <Comment />
+                    </div>
+                </div>
+                {/* Comments section ending here */}
             </div>
-            <div className="rightSection border-2 border-blue-800">{videoData?.snippet?.channelId}</div>
+            <div className="rightSection border-2 border-blue-800"></div>
         </div>
     )
 }
 
 export default Video
+
+// 'https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${videoData?.snippet?.channelId}&key=${API_KEY}
