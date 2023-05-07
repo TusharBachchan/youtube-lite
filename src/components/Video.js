@@ -13,6 +13,7 @@ const Video = () => {
     useEffect(() => {
         getVideoDetails()
         getVideoComments()
+        getRecommendedVideos()
         // getchannelDetails()
     }, [])
     const [videoData, setVideoData] = useState({})
@@ -24,23 +25,31 @@ const Video = () => {
     }
     const getVideoComments = async () => {
         // const data = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`)
-        const data = await fetch(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${id}&key=${API_KEY}`)
+        const data = await fetch(`https://youtube.googleapis.com/youtube/v3/commentThreads?part=snippet%2Creplies&videoId=${id}&key=${API_KEY}&maxResults=100`)
         const json = await data.json();
         setCommentData(json.items)
 
         // setVideoData(json.items[0])
     }
-    // setting up channel api function
-
-    const getchannelDetails = async () => {
-        const data = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${videoData?.snippet?.channelId}&key=${API_KEY}
+    const getRecommendedVideos = async () => {
+        // const data = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`)
+        const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&type=video&key=${API_KEY}&maxResults=50
 `)
-
-        // const json = await data.json();
-        // setCommentData(json.items)
-
+        const json = await data.json();
+        
         // setVideoData(json.items[0])
     }
+    // setting up channel api function
+
+//     const getchannelDetails = async () => {
+//         const data = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${videoData?.snippet?.channelId}&key=${API_KEY}
+// `)
+
+//         // const json = await data.json();
+//         // setCommentData(json.items)
+
+//         // setVideoData(json.items[0])
+//     }
 
     return (
         <div className="video-page-container mt-32 grid grid-cols-3  border-4 border-red-800 w-screen">
@@ -99,11 +108,9 @@ const Video = () => {
                 <div className='comments-container w-4/5 mx-auto p-3 rounded-xl'>
                     <h1 className='font-semibold text-lg'>Comments</h1>
                     <div className="comment-container ">
-                        <Comment />
-                        <Comment />
-                        <Comment />
-                        <Comment />
-                        <Comment />
+                        {CommentData.map((item) => {
+                            return <Comment commentBody={item?.snippet?.topLevelComment?.snippet?.textDisplay} channelName={item?.snippet?.topLevelComment?.snippet?.authorDisplayName} replyCount={item.hasOwnProperty("replies") ? item.replies.comments.length : 0} replies={item.hasOwnProperty("replies") ?item.replies.comments : []}/>
+                        })}
                     </div>
                 </div>
                 {/* Comments section ending here */}

@@ -1,28 +1,30 @@
 import React from 'react'
 import ProfileLogo from "./ProfileLogo"
 import Replies from "./Replies"
+import parse from 'html-react-parser';
 
-const Comment = () => {
-    let arr = ["Hi how are you ?", "Hi how are you ?", "Hi how are you ?", "Hi how are you ?"]
-    let replies = 1
-    let channelName = "T-Series"
+const Comment = ({ commentBody, channelName, replyCount, replies }) => {
+  let arr = ["Hi how are you ?", "Hi how are you ?", "Hi how are you ?", "Hi how are you ?"]
+  // let replyCount = 1
+  // let channelName = "T-Series"
   return (
-      <div className='comment-box-container border border-green-200 grid grid-cols-12 my-2'>
-        <div className="profile-logo col-span-1"><ProfileLogo /></div>
-          <div className="comment-info border border-yellow-500 col-span-10">
-            <div className="channel-details">
-                <div className="channel-name font-semibold p-1">
-                    T-Series
-                </div>
-                <div className="comment-body p-1">
-                    T-Series Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta incidunt aspernatur, ex explicabo amet rerum aliquam sunt perferendis aliquid laborum aperiam 
-                </div>
-                  {replies > 0 ?<div className="replies p-1">
-                      <button className='border p-2 rounded-3xl'> {replies === 1 ? <h2>{replies} reply</h2> : <h2>{replies} replies</h2>} </button>
-                      <Replies channelName = {channelName} commentBody = {"hi how are you"}/>                     
-                  </div> : null}
-            </div>
+    <div className='comment-box-container grid grid-cols-12 my-2'>
+      <div className="profile-logo col-span-1 mt-2"><ProfileLogo /></div>
+      <div className="comment-info col-span-10">
+        <div className="channel-details">
+          <div className="channel-name font-semibold p-1">
+            {channelName}
+          </div>
+          <div className="comment-body p-1">
+            {parse(commentBody)}
+          </div>
+          {replyCount > 0 ? <div className="replyCount p-1">
+            <button className='border p-2 rounded-3xl text-blue-600 font-semibold hover:bg-blue-200'> {replyCount === 1 ? <h2>{replyCount} reply</h2> : <h2>{replyCount} replies</h2>} </button>
+            {replies.map((item) => <Replies channelName={item.snippet.authorDisplayName} replyBody={item.snippet.textDisplay} />)}
+            {/* <Replies channelName={item.snippet.authorDisplayName}/> */}
+          </div> : null}
         </div>
+      </div>
     </div>
   )
 }
