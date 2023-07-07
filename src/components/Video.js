@@ -5,11 +5,14 @@ import { TbShare3 } from 'react-icons/tb';
 import { SlOptions } from 'react-icons/sl';
 import ProfileLogo from "./ProfileLogo"
 import Comment from "./Comment"
+import RecommendedVideos from './RecommendedVideos';
 
 const Video = () => {
     // GET https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=[YOUR_API_KEY]
     const [searchParams] = useSearchParams();
     const id = searchParams.get("v")
+    const [recommendedVideos, setRecommendedVideos] = useState([]);
+
     useEffect(() => {
         getVideoDetails()
         getVideoComments()
@@ -36,24 +39,25 @@ const Video = () => {
         const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&type=video&key=${API_KEY}&maxResults=50
 `)
         const json = await data.json();
-        
+        setRecommendedVideos(json)
+
         // setVideoData(json.items[0])
     }
     // setting up channel api function
 
-//     const getchannelDetails = async () => {
-//         const data = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${videoData?.snippet?.channelId}&key=${API_KEY}
-// `)
+    //     const getchannelDetails = async () => {
+    //         const data = await fetch(`https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${videoData?.snippet?.channelId}&key=${API_KEY}
+    // `)
 
-//         // const json = await data.json();
-//         // setCommentData(json.items)
+    //         // const json = await data.json();
+    //         // setCommentData(json.items)
 
-//         // setVideoData(json.items[0])
-//     }
+    //         // setVideoData(json.items[0])
+    //     }
 
     return (
-        <div className="video-page-container mt-32 grid grid-cols-3  border-4 border-red-800 w-screen">
-            <div className="leftSection border-2 border-green-500 col-span-2">
+        <div className="video-page-container mt-32 grid grid-cols-3 w-screen">
+            <div className="leftSection col-span-2">
                 {/* Video iframe */}
                 <div className="video-container">
                     <iframe className="h-96 w-4/5 mx-auto" src={"https://www.youtube.com/embed/" + id} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -109,14 +113,18 @@ const Video = () => {
                     <h1 className='font-semibold text-lg'>Comments</h1>
                     <div className="comment-container ">
                         {CommentData.map((item) => {
-                            return <Comment commentBody={item?.snippet?.topLevelComment?.snippet?.textDisplay} channelName={item?.snippet?.topLevelComment?.snippet?.authorDisplayName} replyCount={item.hasOwnProperty("replies") ? item.replies.comments.length : 0} replies={item.hasOwnProperty("replies") ?item.replies.comments : []}/>
+                            return <Comment commentBody={item?.snippet?.topLevelComment?.snippet?.textDisplay} channelName={item?.snippet?.topLevelComment?.snippet?.authorDisplayName} replyCount={item.hasOwnProperty("replies") ? item.replies.comments.length : 0} replies={item.hasOwnProperty("replies") ? item.replies.comments : []} />
                         })}
                     </div>
                 </div>
                 {/* Comments section ending here */}
             </div>
-            <div className="rightSection border-2 border-blue-800"></div>
+            <div className="rightSection">
+                {/* <RecommendedVideos imgUrl={recommendedVideos.items}/> */}
+                {recommendedVideos?.items?.map((item) => <RecommendedVideos imgUrl={item?.snippet?.thumbnails?.medium?.url} title={item?.snippet?.title} channelTitle={item?.snippet?.channelTitle} views={item?.statistics?.viewCount} id={item?.id} />)}
+            </div>
         </div>
+
     )
 }
 
