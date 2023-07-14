@@ -132,7 +132,7 @@ const SideBar = () => {
               <li
                 key={name}
                 className={`pl-6 py-3 hover:bg-zinc-600 ${
-                  name === "Home" ? "bg-slate-600" : ""
+                  name === "Home" ? "bg-slate-300" : ""
                 }`}
               >
                 <a href="#" className="flex items-center gap-5">
