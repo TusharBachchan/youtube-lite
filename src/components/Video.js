@@ -56,8 +56,8 @@ const Video = () => {
     //     }
 
     return (
-        <div className="video-page-container mt-32 grid grid-cols-3 w-screen">
-            <div className="leftSection col-span-2">
+        <div className="video-page-container p-2 mobile:mt-48 sm:mt-28 md:mt-36 grid  grid-cols-1 md:grid-cols-3">
+            <div className="leftSection mobile:col-span-1 md:col-span-2">
                 {/* Video iframe */}
                 <div className="video-container">
                     <iframe className="h-96 w-4/5 mx-auto" src={"https://www.youtube.com/embed/" + id} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -131,3 +131,5 @@ const Video = () => {
 export default Video
 
 // 'https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${videoData?.snippet?.channelId}&key=${API_KEY}
+
+
