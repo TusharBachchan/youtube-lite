@@ -1,8 +1,8 @@
 {
-  "homepage": "https://TusharBachchan.github.io/youtube-lite",
+  "homepage": "https://tusharbachchan.github.io/youtube-lite",
   "name": "youtube-lite",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.5",
