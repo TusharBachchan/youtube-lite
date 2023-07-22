@@ -189,7 +189,7 @@ const SideBar = () => {
             return <li key={name}>{name}</li>;
           })}
         </ul>
-        <span className="px-4 text-sm text-zinc-400">&copy; 2022 Google</span>
+        <span className="px-4 text-sm text-zinc-400">&copy; 2023 Google</span>
         <br />
         <p className="px-4 pt-3 text-sm text-zinc-400">
           This clone is for educational purpose only.
