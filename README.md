@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# YouTube Lite
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+YouTube Lite is a fully responsive YouTube clone developed using React and Redux. The project is integrated with the official YouTube API, allowing users to fetch, play, and comment on videos, as well as receive video recommendations.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Live Video Fetching:** Fetch videos in real-time from the official YouTube API.
+- **Video Playback:** Play videos seamlessly within the application.
+- **Comments System:** Engage with videos by adding and viewing comments.
+- **Recommendations:** Receive personalized video recommendations for an enhanced experience.
+- **Responsive Design:** Ensure a consistent and user-friendly experience across various devices.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Search Bar
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The application features a search bar with trailing debouncing, providing users with relevant search suggestions as they type.
 
-### `npm test`
+## Technologies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React:** A JavaScript library for building user interfaces.
+- **Redux:** A predictable state container for managing the application's state.
+- **YouTube API:** Official API for integrating YouTube functionalities into the application.
+- **CSS (Responsive Design):** Styling for responsive web design, ensuring compatibility across different devices.
 
-### `npm run build`
+## Skills Demonstrated
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Frontend Development:** Creating a visually appealing and interactive user interface.
+- **API Integration:** Incorporating external APIs to access and display dynamic content.
+- **State Management:** Using Redux to manage the state of the application.
+- **Responsive Web Design:** Ensuring a seamless experience across a variety of devices.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Accomplishments
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Optimized Video Loading Times:** Enhanced the performance of the application by optimizing video loading times.
+- **Enhanced User Experience:** Focused on improving the overall user experience to provide a smooth and enjoyable interaction.
 
-### `npm run eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Follow these steps to run the project locally:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Generate YouTube API Key:**
+   - Visit the [Google Cloud Console](https://console.cloud.google.com/).
+   - Create a new project or select an existing one.
+   - Enable the YouTube Data API v3.
+   - Create credentials and generate an API key.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Configure API Key:**
+   - Copy the API key.
+   - Replace `'YOUR_API_KEY'` in the project code with your actual API key.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+3. **Install Dependencies:**
+   ```bash
+   npm install
+4. **Run the Project:**
+   ```bash
+   npm start
+5. Remove /youtube-lite from the url if needed ie change  http://localhost:port_number/youtube-lite to http://localhost:port_number
