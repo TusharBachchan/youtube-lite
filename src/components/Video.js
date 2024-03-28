@@ -18,6 +18,7 @@ const Video = () => {
         getVideoComments()
         getRecommendedVideos()
         // getchannelDetails()
+        console.log(recommendedVideos)
     }, [])
     const [videoData, setVideoData] = useState({})
     const [CommentData, setCommentData] = useState([])
@@ -43,6 +44,33 @@ const Video = () => {
 
         // setVideoData(json.items[0])
     }
+
+    // const getRecommendedVideos = async () => {
+    //     try {
+    //         const data = await fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&type=video&key=${API_KEY}&maxResults=50`);
+
+    //         if (!data.ok) {
+    //             throw new Error('Failed to fetch recommended videos bhai');
+    //         }
+
+    //         const json = await data.json();
+
+    //         // Check if the expected data is available
+    //         if (json.items && json.items.length > 0) {
+    //             setRecommendedVideos(json.items);
+    //         } else {
+    //             console.error('No recommended videos found.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error fetching recommended videos:', error);
+    //     }
+    // };
+
+
+
+
+
+
     // setting up channel api function
 
     //     const getchannelDetails = async () => {

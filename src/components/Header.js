@@ -22,8 +22,17 @@ const Header = () => {
         const timer = setTimeout(() => getSuggestions(), 300)
         return () => clearTimeout(timer)
     }, [searchQuery])
+    // const getSuggestions = async () => {
+    //     const data = await fetch(suggestionsApi + searchQuery);
+    //     const json = await data.json();
+    //     setSuggestions(json[1])
+    // }
     const getSuggestions = async () => {
-        const data = await fetch(suggestionsApi + searchQuery);
+        const requestOptions = {
+            method: 'GET',
+            mode: 'cors',
+        };
+        const data = await fetch(suggestionsApi + searchQuery, requestOptions);
         const json = await data.json();
         setSuggestions(json[1])
     }
